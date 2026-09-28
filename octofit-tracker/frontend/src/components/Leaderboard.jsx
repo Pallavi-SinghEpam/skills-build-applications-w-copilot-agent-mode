@@ -1,5 +1,9 @@
 import CollectionPage from './CollectionPage.jsx'
 
+const apiUrl = import.meta.env.VITE_CODESPACE_NAME
+  ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/leaderboard/`
+  : 'http://localhost:8000/api/leaderboard/'
+
 function displayName(user) {
   if (!user) return 'Unknown athlete'
   if (typeof user === 'string') return user
@@ -12,6 +16,7 @@ function Leaderboard() {
       title="Leaderboard"
       subtitle="A little friendly competition goes a long way."
       resource="leaderboard"
+      endpoint={apiUrl}
       columns={[
         { key: 'rank', label: 'Rank', render: (entry, index) => <span className="rank-value">{entry.rank ?? index + 1}</span> },
         { key: 'athlete', label: 'Athlete', render: (entry) => displayName(entry.user) },

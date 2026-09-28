@@ -1,7 +1,7 @@
 import { useApiCollection } from '../api.js'
 
-function CollectionPage({ title, subtitle, resource, columns }) {
-  const { items, count, loading, error } = useApiCollection(resource)
+function CollectionPage({ title, subtitle, resource, endpoint, columns }) {
+  const { items, count, loading, error } = useApiCollection(endpoint)
 
   return (
     <section className="collection-page">

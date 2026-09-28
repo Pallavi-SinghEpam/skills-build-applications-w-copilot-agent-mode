@@ -1,11 +1,16 @@
 import CollectionPage from './CollectionPage.jsx'
 
+const apiUrl = import.meta.env.VITE_CODESPACE_NAME
+  ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/workouts/`
+  : 'http://localhost:8000/api/workouts/'
+
 function Workouts() {
   return (
     <CollectionPage
       title="Workouts"
       subtitle="A good plan turns intention into momentum."
       resource="workouts"
+      endpoint={apiUrl}
       columns={[
         { key: 'title', label: 'Workout', render: (workout) => <strong>{workout.title || 'Untitled workout'}</strong> },
         { key: 'type', label: 'Focus', render: (workout) => <span className="type-label">{workout.type || 'General'}</span> },

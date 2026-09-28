@@ -1,5 +1,9 @@
 import CollectionPage from './CollectionPage.jsx'
 
+const apiUrl = import.meta.env.VITE_CODESPACE_NAME
+  ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/activities/`
+  : 'http://localhost:8000/api/activities/'
+
 function memberName(member) {
   if (!member) return 'Unknown athlete'
   if (typeof member === 'string') return member
@@ -12,6 +16,7 @@ function Activities() {
       title="Activity log"
       subtitle="Every session, recorded and ready to build on."
       resource="activities"
+      endpoint={apiUrl}
       columns={[
         { key: 'athlete', label: 'Athlete', render: (activity) => memberName(activity.user) },
         { key: 'type', label: 'Activity', render: (activity) => <span className="type-label">{activity.type || 'Activity'}</span> },

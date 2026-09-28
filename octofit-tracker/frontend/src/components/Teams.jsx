@@ -1,11 +1,16 @@
 import CollectionPage from './CollectionPage.jsx'
 
+const apiUrl = import.meta.env.VITE_CODESPACE_NAME
+  ? `https://${import.meta.env.VITE_CODESPACE_NAME}-8000.app.github.dev/api/teams/`
+  : 'http://localhost:8000/api/teams/'
+
 function Teams() {
   return (
     <CollectionPage
       title="Teams"
       subtitle="Find your crew and see what you’re building together."
       resource="teams"
+      endpoint={apiUrl}
       columns={[
         { key: 'name', label: 'Team', render: (team) => <strong>{team.name || 'Unnamed team'}</strong> },
         { key: 'description', label: 'About', render: (team) => team.description || '—' },
